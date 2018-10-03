@@ -1,6 +1,6 @@
 {
   "name": "@favish/ory-editor-ui",
-  "version": "0.0.0",
+  "version": "0.4.4-5",
   "author": "ORY GmbH",
   "license": "GNU Lesser General Public License v3.0",
   "main": "./lib/index.js",
@@ -24,17 +24,16 @@
     "react-jss": "^8.6.1"
   },
   "dependencies": {
+    "@favish/ory-editor-core": "^0.4.4-5",
     "classnames": "^2.2.5",
     "device.js": "^2.3.0",
     "lodash.throttle": "^4.1.1",
-    "@favish/ory-editor-core": "0.0.0",
     "rc-tooltip": "^3.4.3",
     "react-color": "^2.14.1",
     "react-dnd": "^2.4.0",
     "react-redux": "^5.0.4",
     "reselect": "^3.0.0"
   },
-  "devDependencies": {},
   "publishConfig": {
     "access": "public"
   }

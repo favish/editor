@@ -1,6 +1,6 @@
 {
   "name": "@favish/ory-editor-plugins-video",
-  "version": "0.0.0",
+  "version": "0.4.4-5",
   "main": "./lib/index.js",
   "author": "ORY GmbH",
   "license": "GNU Lesser General Public License v3.0",
@@ -23,11 +23,10 @@
     "react-dom": "^16.0.0"
   },
   "dependencies": {
-    "@favish/ory-editor-core": "0.0.0",
-    "@favish/ory-editor-ui": "0.0.0",
+    "@favish/ory-editor-core": "^0.4.4-5",
+    "@favish/ory-editor-ui": "^0.4.4-5",
     "react-player": "^0.22.0"
   },
-  "devDependencies": {},
   "publishConfig": {
     "access": "public"
   }

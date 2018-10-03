@@ -1,6 +1,6 @@
 {
   "name": "@favish/ory-editor-renderer",
-  "version": "0.0.0",
+  "version": "0.4.4-5",
   "main": "./lib/index.js",
   "author": "ORY GmbH",
   "license": "GNU Lesser General Public License v3.0",
@@ -19,11 +19,11 @@
     "react-dom": "^16.0.0"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
-    "@favish/ory-editor-core": "0.0.0"
+    "@favish/ory-editor-core": "^0.4.4-5",
+    "classnames": "^2.2.5"
   },
   "devDependencies": {
-    "@favish/ory-editor-plugins-slate": "0.0.0"
+    "@favish/ory-editor-plugins-slate": "^0.4.4-5"
   },
   "publishConfig": {
     "access": "public"
