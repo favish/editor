@@ -4,6 +4,7 @@
   "license": "GNU Lesser General Public License v3.0",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "chokidar-cli": "^1.2.0",
     "coveralls": "^3.0.2",

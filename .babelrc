@@ -1,6 +1,22 @@
 {
   "presets": ["react-app"],
   "plugins": [
-    "transform-es2015-modules-commonjs"
+    "transform-es2015-modules-commonjs",
+    ["module-resolver", {
+      "root": ["."],
+      "alias": {
+        "ory-editor-core": "@favish/ory-editor-core",
+        "ory-editor-plugins-background": "@favish/ory-editor-plugins-background",
+        "ory-editor-plugins-default-native": "@favish/ory-editor-plugins-default-native",
+        "ory-editor-plugins-divider": "@favish/ory-editor-plugins-divider",
+        "ory-editor-plugins-image": "@favish/ory-editor-plugins-image",
+        "ory-editor-plugins-parallax-background": "@favish/ory-editor-plugins-parallax-background",
+        "ory-editor-plugins-slate": "@favish/ory-editor-plugins-slate",
+        "ory-editor-plugins-spacer": "@favish/ory-editor-plugins-spacer",
+        "ory-editor-plugins-video": "@favish/ory-editor-plugins-video",
+        "ory-editor-renderer": "@favish/ory-editor-renderer",
+        "ory-editor-ui": "@favish/ory-editor-ui"
+      }
+    }]
   ]
 }

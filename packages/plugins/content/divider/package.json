@@ -1,6 +1,6 @@
 {
   "name": "@favish/ory-editor-plugins-divider",
-  "version": "0.4.4-5",
+  "version": "0.0.0",
   "main": "./lib/index.js",
   "author": "ORY GmbH",
   "license": "GNU Lesser General Public License v3.0",
