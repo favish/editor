@@ -1,5 +1,5 @@
 {
-  "name": "ory-editor-plugins-video",
+  "name": "@favish/ory-editor-plugins-video",
   "version": "0.0.0",
   "main": "./lib/index.js",
   "author": "ORY GmbH",
@@ -23,8 +23,8 @@
     "react-dom": "^16.0.0"
   },
   "dependencies": {
-    "ory-editor-core": "0.0.0",
-    "ory-editor-ui": "0.0.0",
+    "@favish/ory-editor-core": "0.0.0",
+    "@favish/ory-editor-ui": "0.0.0",
     "react-player": "^0.22.0"
   },
   "devDependencies": {},

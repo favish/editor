@@ -1,5 +1,5 @@
 {
-  "name": "ory-editor-plugins-spacer",
+  "name": "@favish/ory-editor-plugins-spacer",
   "version": "0.0.0",
   "main": "./lib/index.js",
   "author": "ORY GmbH",
@@ -24,8 +24,8 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "ory-editor-core": "0.0.0",
-    "ory-editor-ui": "0.0.0",
+    "@favish/ory-editor-core": "0.0.0",
+    "@favish/ory-editor-ui": "0.0.0",
     "react-resizable": "^1.7.0"
   },
   "devDependencies": {},

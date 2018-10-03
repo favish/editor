@@ -21,3 +21,26 @@
  */
 
 @import "Item/index.css";
+@import "Draggable/index.css";
+
+.ory-toolbar-paper {
+	top: auto !important;
+	bottom: 5%;
+	width: 200px;
+	height: auto !important;
+	padding: 0 10px;
+	margin-left: 100px;
+	border: 1px solid rgba(0, 0, 0, 0.12);
+	border-radius: 5px;
+}
+
+.ory-toolbar-list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+}
+
+.ory-toolbar-subheader {
+	width: 100%;
+	text-align: center;
+}

@@ -27,20 +27,12 @@ import draggable from '../Draggable'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import { Plugin } from 'ory-editor-core'
-import DragHandle from '@material-ui/icons/DragHandle'
-import Tooltip from 'rc-tooltip'
+import classNames from 'classnames'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 class Item extends Component {
   state = { tooltipVisible: false }
   props: { plugin: Plugin, insert: any }
-
-  onMouseEnter = () => {
-    this.setState({ tooltipVisible: true })
-  }
-
-  onMouseLeave = () => {
-    this.setState({ tooltipVisible: false })
-  }
 
   render() {
     const { plugin, insert } = this.props
@@ -53,28 +45,26 @@ class Item extends Component {
 
     // not using css modules here because they don't work with svg icons
     return (
-      <ListItem className="ory-toolbar-item">
-        <Avatar children={plugin.IconComponent} />
-        <ListItemText primary={plugin.text} secondary={plugin.description} />
-        <span
-          className="ory-toolbar-item-drag-handle-button"
-          onMouseEnter={this.onMouseEnter}
-          onMouseLeave={this.onMouseLeave}
-          onMouseDown={this.onMouseLeave}
-        >
-          <Draggable insert={insert}>
-            <Tooltip
-              visible={this.state.tooltipVisible}
-              placement="bottomLeft"
-              overlay={<span>Drag me!</span>}
-            >
-              <DragHandle className="ory-toolbar-item-drag-handle" />
-            </Tooltip>
-          </Draggable>
-        </span>
+      <ListItem
+        className={classNames('ory-toolbar-item', this.props.classes.root)}
+      >
+        <Draggable insert={insert}>
+          <Avatar children={plugin.IconComponent} />
+          <ListItemText
+            primary={plugin.text}
+            classes={{ root: 'ory-toolbar-item-name' }}
+          />
+        </Draggable>
       </ListItem>
     )
   }
 }
 
-export default Item
+const styles = {
+  root: {
+    width: '50%',
+    justifyContent: 'center'
+  }
+}
+
+export default withStyles(styles, { name: 'ToolbarItem' })(Item)

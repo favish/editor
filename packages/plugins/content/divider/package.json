@@ -1,5 +1,5 @@
 {
-  "name": "ory-editor-plugins-divider",
+  "name": "@favish/ory-editor-plugins-divider",
   "version": "0.0.0",
   "main": "./lib/index.js",
   "author": "ORY GmbH",

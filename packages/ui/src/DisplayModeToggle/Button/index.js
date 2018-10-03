@@ -24,6 +24,17 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
 import { device } from 'device.js'
+import withStyles from '@material-ui/core/styles/withStyles'
+
+const styles = theme => ({
+  fab: {
+    boxShadow: theme.shadows[2],
+    width: 46,
+    height: 46
+  }
+})
+
+const FabSubtleButton = withStyles(styles, { name: 'FabSubtle' })(Button)
 
 const DisplayModeToggle = ({
   description,
@@ -41,15 +52,15 @@ const DisplayModeToggle = ({
 }) => (
   <div className="ory-controls-mode-toggle-button">
     <div className="ory-controls-mode-toggle-button-inner">
-      <Button
+      <FabSubtleButton
         variant="fab"
-        color={active ? 'secondary' : 'default'}
+        color={active ? 'secondary' : 'primary'}
         mini={device.mobile}
         onClick={onClick}
         disabled={disabled}
       >
         {icon}
-      </Button>
+      </FabSubtleButton>
     </div>
     <div className="ory-controls-mode-toggle-button-description">
       {description}

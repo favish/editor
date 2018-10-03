@@ -107,21 +107,17 @@ class Raw extends Component {
         variant="persistent"
         className="ory-toolbar-drawer"
         open={isInsertMode}
+        classes={{ paper: 'ory-toolbar-paper' }}
       >
-        <List subheader={<ListSubheader>Add plugin to content</ListSubheader>}>
-          <ListItem ref={this.onRef}>
-            <TextField
-              placeholder="Search plugins"
-              fullWidth
-              onChange={this.onSearch}
-            />
-          </ListItem>
-          {layout.length + content.length === 0 && (
-            <ListSubheader>{this.props.noPluginFoundContent}</ListSubheader>
-          )}
-        </List>
         {content.length > 0 && (
-          <List subheader={<ListSubheader>Content plugins</ListSubheader>}>
+          <List
+            classes={{ root: 'ory-toolbar-list' }}
+            subheader={
+              <ListSubheader classes={{ root: 'ory-toolbar-subheader' }}>
+                Content plugins
+              </ListSubheader>
+            }
+          >
             {content.map((plugin: ContentPlugin, k: Number) => {
               const initialState = plugin.createInitialState()
 
@@ -141,7 +137,13 @@ class Raw extends Component {
           </List>
         )}
         {layout.length > 0 && (
-          <List subheader={<ListSubheader>Layout plugins</ListSubheader>}>
+          <List
+            subheader={
+              <ListSubheader classes={{ root: 'ory-toolbar-subheader' }}>
+                Layout plugins
+              </ListSubheader>
+            }
+          >
             {layout.map((plugin: LayoutPlugin, k: Number) => {
               const initialState = plugin.createInitialState()
               const children = plugin.createInitialChildren()

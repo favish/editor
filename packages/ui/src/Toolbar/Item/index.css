@@ -20,6 +20,17 @@
  *
  */
 
+.ory-toolbar-draggable {
+  cursor: move;
+  border-radius: 3px;
+  padding: 12px 10px 8px;
+  transition: all 300ms ease;
+}
+
+.ory-toolbar-item:hover {
+  background: #f6f6f6;
+}
+
 .ory-toolbar-item-drag-handle-button,
 .ory-toolbar-item-drag-handle-button svg {
   cursor: move !important;
@@ -49,6 +60,12 @@
   background: var(--minBlack);
   color: var(--darkWhite) !important;
   fill: var(--darkWhite) !important;
+}
+
+.ory-toolbar-item-name {
+  width: 100%;
+  padding: 0 !important;
+  text-align: center;
 }
 
 .rc-tooltip {

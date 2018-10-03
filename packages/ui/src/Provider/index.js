@@ -39,12 +39,12 @@ class Provider extends Component {
   DragDropContext: any
 
   render() {
-    const { editor, children = [] } = this.props
+    const { editor, children = [], theme } = this.props
     const DragDropContext = this.DragDropContext
     return (
       <ReduxProvider store={editor.store}>
         <DragDropContext>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider theme={theme}>{children}</ThemeProvider>
         </DragDropContext>
       </ReduxProvider>
     )
