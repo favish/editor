@@ -30,14 +30,14 @@ import type { Cell, Row } from 'ory-editor-core/lib/types/editable'
 const gridClass = (size: number = 12): string =>
   `ory-cell-sm-${size} ory-cell-xs-12`
 
-const HTMLRow = ({ cells = [], className, hasInlineChildren }: Row) => (
+const HTMLRow = ({ cells = [], className, hasInlineChildren, editable }: Row) => (
   <div
     className={classNames('ory-row', className, {
       'ory-row-has-floating-children': hasInlineChildren
     })}
   >
     {cells.map((c: Cell) => (
-      <HTMLCell key={c.id} {...c} />
+      <HTMLCell key={c.id} {...c} editable={editable} />
     ))}
   </div>
 )
@@ -52,7 +52,9 @@ const HTMLCell = (props: Cell) => {
     content = {},
     hasInlineNeighbour,
     inline,
-    size
+    size,
+    editable,
+    id
   } = props
   const cn = classNames('ory-cell', gridClass(size), {
     'ory-cell-has-inline-neighbour': hasInlineNeighbour,
@@ -68,9 +70,9 @@ const HTMLCell = (props: Cell) => {
     return (
       <div className={cn}>
         <div className="ory-cell-inner">
-          <Component isPreviewMode readOnly state={state} onChange={noop}>
+          <Component isPreviewMode readOnly state={state} onChange={noop} editable={editable} id={id}>
             {rows.map((r: Row) => (
-              <HTMLRow key={r.id} {...r} className="ory-cell-inner" />
+              <HTMLRow key={r.id} {...r} className="ory-cell-inner" editable={editable} />
             ))}
           </Component>
         </div>
@@ -86,7 +88,7 @@ const HTMLCell = (props: Cell) => {
     return (
       <div className={cn}>
         <div className="ory-cell-inner ory-cell-leaf">
-          <Renderer isPreviewMode readOnly state={state} onChange={noop} />
+          <Renderer isPreviewMode readOnly state={state} onChange={noop} editable={editable} id={id}/>
         </div>
       </div>
     )
@@ -94,7 +96,7 @@ const HTMLCell = (props: Cell) => {
     return (
       <div className={cn}>
         {rows.map((r: Row) => (
-          <HTMLRow key={r.id} {...r} className="ory-cell-inner" />
+          <HTMLRow key={r.id} {...r} className="ory-cell-inner" editable={editable} />
         ))}
       </div>
     )
@@ -116,6 +118,5 @@ export const HTMLRenderer = ({
 }) => {
   const service = new PluginService(plugins)
   const props = reducer(service.unserialize(state), { type: 'renderer/noop' })
-
-  return <HTMLRow {...props} />
+  return <HTMLRow {...props} editable={state.id}/>
 }
