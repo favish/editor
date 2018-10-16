@@ -33,11 +33,11 @@ import React from 'react'
 import type { Props } from './Component'
 import AlignmentPlugin from './plugins/alignment'
 import BlockquotePlugin from './plugins/blockquote'
-import CodePlugin from './plugins/code'
 import EmphasizePlugin from './plugins/emphasize'
 import HeadingsPlugin from './plugins/headings'
 import LinkPlugin from './plugins/link'
 import ListsPlugin from './plugins/lists'
+import TextColorPlugin from './plugins/text-color'
 import ParagraphPlugin, { P } from './plugins/paragraph'
 import parse5 from 'parse5'
 
@@ -53,10 +53,11 @@ export const defaultPlugins = [
   new EmphasizePlugin(),
   new HeadingsPlugin({ DEFAULT_NODE }),
   new LinkPlugin(),
-  new CodePlugin({ DEFAULT_NODE }),
+  // new CodePlugin({ DEFAULT_NODE }),
   new ListsPlugin({ DEFAULT_NODE }),
   new BlockquotePlugin({ DEFAULT_NODE }),
-  new AlignmentPlugin()
+  new AlignmentPlugin(),
+  new TextColorPlugin(),
   // new KatexPlugin({ DEFAULT_NODE })
 ]
 

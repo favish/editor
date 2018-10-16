@@ -1,0 +1,12 @@
+.slate-plugin-text-color {
+	display: inline;
+	position: relative;
+}
+.slate-plugin-text-color-select {
+	display: none;
+	position: absolute;
+	top: -100%;
+}
+.slate-plugin-text-color-select--show {
+	display: block;
+}

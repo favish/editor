@@ -83,8 +83,8 @@ export default class HeadingsPlugin extends Plugin {
       [H2]: makeTagNode('h2'),
       [H3]: makeTagNode('h3'),
       [H4]: makeTagNode('h4'),
-      [H5]: makeTagNode('h5'),
-      [H6]: makeTagNode('h6')
+      // [H5]: makeTagNode('h5'),
+      // [H6]: makeTagNode('h6')
     }
   }
 
@@ -93,8 +93,8 @@ export default class HeadingsPlugin extends Plugin {
     this.createButton(H2, <H2Icon />),
     this.createButton(H3, <H3Icon />),
     this.createButton(H4, <H4Icon />),
-    this.createButton(H5, <H5Icon />),
-    this.createButton(H6, <H6Icon />)
+    // this.createButton(H5, <H5Icon />),
+    // this.createButton(H6, <H6Icon />)
   ]
 
   deserialize = (el, next) => {
@@ -121,7 +121,7 @@ export default class HeadingsPlugin extends Plugin {
     if (object.object !== 'block') {
       return
     }
-    const style = { textAlign: object.data.get('align') }
+    const style = object.data.toObject()
 
     switch (object.type) {
       case H1:
@@ -141,7 +141,7 @@ export default class HeadingsPlugin extends Plugin {
 
   renderNode = props => {
     const { children } = props
-    const style = { textAlign: props.node.data.get('align') }
+    const style = props.node.data.toObject()
     switch (props.node.type) {
       case H1:
         return <h1 style={style}>{children}</h1>

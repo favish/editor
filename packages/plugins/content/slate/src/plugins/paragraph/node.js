@@ -25,9 +25,8 @@ import React, { Component } from 'react'
 class Paragraph extends Component {
   render() {
     const { children, attributes } = this.props
-    const align = this.props.node.data.get('align')
     return (
-      <p {...attributes} style={{ textAlign: align }}>
+      <p {...attributes} style={this.props.node.data.toObject()}>
         {children}
       </p>
     )

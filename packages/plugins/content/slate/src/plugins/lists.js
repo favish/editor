@@ -128,8 +128,8 @@ export default class ListsPlugin extends Plugin {
   toolbarButtons = [
     this.createButton(UL, <ListIcon />),
     this.createButton(OL, <OrderedListIcon />),
-    this.createButton(INCREASE_INDENT, <IncreaseIndentIcon />),
-    this.createButton(DECREASE_INDENT, <DecreaseIndentIcon />),
+    // this.createButton(INCREASE_INDENT, <IncreaseIndentIcon />),
+    // this.createButton(DECREASE_INDENT, <DecreaseIndentIcon />),
   ]
 
   deserialize = (el, next) => {
