@@ -46,8 +46,9 @@ class TextColorComponent extends Component {
             open={this.state.showSelect}
             onClose={this._handleCloseSelect.bind(this)}
           >
-            <MenuItem value={'#ff0000'}>#ff0000</MenuItem>
-            <MenuItem value={'#ff00ff'}>#ff00ff</MenuItem>
+            <MenuItem value={'#212121'}>Black</MenuItem>
+            <MenuItem value={'#ffffff'}>White</MenuItem>
+            <MenuItem value={'#15A7E6'}>Blue</MenuItem>
           </Select>
         </div>
       </div>
