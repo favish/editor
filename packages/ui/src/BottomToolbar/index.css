@@ -1,0 +1,9 @@
+.BottomToolbar-dialog {
+	z-index: -1 !important;
+}
+.BottomToolbar-dialog--show {
+	z-index: 1 !important;
+}
+.BottomToolbar-dialog-paper {
+	padding: 20px;
+}

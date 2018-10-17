@@ -21,49 +21,53 @@
  */
 
 // @flow
-import Drawer from '@material-ui/core/Drawer'
-import React from 'react'
+import React, { Component } from 'react'
 import ThemeProvider from '../ThemeProvider'
+import Dialog from '@material-ui/core/Dialog'
+import classNames from 'classnames'
 
-const darkBlack = 'rgba(0, 0, 0, 0.87)'
+class BottomToolbar extends Component {
+  constructor(props) {
+    super(props);
+    this._enableBodyScroll()
+  }
 
-const BottomToolbar = ({
-  open = false,
-  children,
-  className,
-  theme
-}: {
-  open?: boolean,
-  children?: Object,
-  className?: string,
-  theme?: string
-}) => (
-  <ThemeProvider theme={theme}>
-    <Drawer
-      variant="persistent"
-      className={className}
-      open={open}
-      anchor="bottom"
-      PaperProps={{
-        style: {
-          backgroundColor: 'transparent',
-          border: 'none'
-        }
-      }}
-    >
-      <div
-        style={{
-          border: `${darkBlack} 1px solid`,
-          borderRadius: '4px 4px 0 0',
-          backgroundColor: darkBlack,
-          padding: '12px 24px',
-          margin: 'auto'
-        }}
-      >
-        {children}
-      </div>
-    </Drawer>
-  </ThemeProvider>
-)
+  componentDidUpdate(prevProps) {
+    if (!prevProps.open && this.props.open) {
+      this._disableBodyScroll()
+    }
+  }
+
+  _enableBodyScroll() {
+    document.body.style.overflow = 'scroll'
+  }
+
+  _disableBodyScroll() {
+    document.body.style.overflow = 'hidden'
+  }
+
+  _handleBackdropClick() {
+    window.editor.trigger.cell.blurAll()
+    this._enableBodyScroll()
+  }
+
+  render() {
+    const { open, children, className, theme } = this.props;
+    return (
+      <ThemeProvider>
+        <Dialog
+          open={true}
+          className={classNames('BottomToolbar-dialog', { 'BottomToolbar-dialog--show': open })}
+          classes={{ paper: 'BottomToolbar-dialog-paper' }}
+          onBackdropClick={this._handleBackdropClick.bind(this)}
+        >
+          {children}
+        </Dialog>
+
+
+      </ThemeProvider>
+    )
+  }
+}
 
 export default BottomToolbar
