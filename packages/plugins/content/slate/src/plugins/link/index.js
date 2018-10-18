@@ -32,6 +32,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogActions from '@material-ui/core/DialogActions'
 import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography';
 import { Data } from 'slate'
 import type { Props } from '../props'
 import ThemeProvider from 'ory-editor-ui/lib/ThemeProvider'
@@ -216,6 +217,12 @@ class LinkButton extends Component {
                     onChange={this.onHrefChange}
                     value={this.state.href}
                   />
+                  <Typography
+                    variant="caption"
+                    classes={{ root: 'slate-plugin-link-caption' }}
+                  >
+                    Add a slash before internals paths (e.g. /about-us).
+                  </Typography>
                 </div>
               </DialogContent>
               <DialogActions>{actions}</DialogActions>
