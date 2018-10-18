@@ -27,7 +27,8 @@
   left: -10000px;
   margin-top: -6px;
   opacity: 0;
-  background-color: var(--grey900);
+  background-color: #ffffff;
+  box-shadow: 0 0 100px 0 rgba(0,0,0,0.2);
   border-radius: 4px;
   transition: opacity .75s;
 }
