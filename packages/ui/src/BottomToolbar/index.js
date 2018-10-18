@@ -45,7 +45,8 @@ const BottomToolbar = ({
         style: {
           backgroundColor: 'transparent',
           border: 'none',
-          overflow: open ? 'visible' : 'hidden'
+          overflow: open ? 'visible' : 'hidden',
+          pointerEvents: 'none'
         }
       }}
     >
@@ -55,7 +56,8 @@ const BottomToolbar = ({
           backgroundColor: '#ffffff',
           padding: '20px 24px',
           margin: 'auto',
-          boxShadow: '0px 0px 100px 0px rgba(0,0,0,0.2)'
+          boxShadow: '0px 0px 100px 0px rgba(0,0,0,0.2)',
+          pointerEvents: 'auto'
         }}
       >
         {children}

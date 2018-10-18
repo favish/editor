@@ -38,8 +38,24 @@ import {
   isResizeMode
 } from 'ory-editor-core/lib/selector/display'
 import { createStructuredSelector } from 'reselect'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 import Provider from '../Provider'
+
+const styles = theme => ({
+  root: {
+    '&$disabled': {
+      backgroundColor: theme.palette.secondary.main,
+      color: '#ffffff'
+    },
+  },
+  'containedSecondary': {
+    backgroundColor: theme.palette.secondary.dark,
+  },
+  disabled: {}
+})
+
+const StyledButton = withStyles(styles, { name: 'styled-trash' })(Button)
 
 const target = {
   hover: throttle(
@@ -78,9 +94,9 @@ class Raw extends React.Component {
           'ory-controls-trash-active': isLayoutMode
         })}
       >
-        <Button variant="fab" color="secondary" disabled={!isOverCurrent}>
+        <StyledButton variant="fab" color="secondary" disabled={!isOverCurrent}>
           <Delete />
-        </Button>
+        </StyledButton>
       </div>
     )
   }
