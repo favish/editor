@@ -24,21 +24,18 @@
 import Drawer from '@material-ui/core/Drawer'
 import React from 'react'
 import ThemeProvider from '../ThemeProvider'
-
-const darkBlack = 'rgba(0, 0, 0, 0.87)'
+import { lightTheme } from 'ory-editor-ui/lib/ThemeProvider'
 
 const BottomToolbar = ({
   open = false,
   children,
   className,
-  theme
 }: {
   open?: boolean,
   children?: Object,
   className?: string,
-  theme?: string
 }) => (
-  <ThemeProvider theme={theme}>
+  <ThemeProvider theme={lightTheme}>
     <Drawer
       variant="persistent"
       className={className}
@@ -47,17 +44,18 @@ const BottomToolbar = ({
       PaperProps={{
         style: {
           backgroundColor: 'transparent',
-          border: 'none'
+          border: 'none',
+          overflow: open ? 'visible' : 'hidden'
         }
       }}
     >
       <div
         style={{
-          border: `${darkBlack} 1px solid`,
           borderRadius: '4px 4px 0 0',
-          backgroundColor: darkBlack,
-          padding: '12px 24px',
-          margin: 'auto'
+          backgroundColor: '#ffffff',
+          padding: '20px 24px',
+          margin: 'auto',
+          boxShadow: '0px 0px 100px 0px rgba(0,0,0,0.2)'
         }}
       >
         {children}
