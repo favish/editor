@@ -223,6 +223,12 @@ class LinkButton extends Component {
                   >
                     Add a slash before internals paths (e.g. /about-us).
                   </Typography>
+                  <Typography
+                    variant="caption"
+                    classes={{ root: 'slate-plugin-link-caption' }}
+                  >
+                    For phone links, add 'tel:' before the number (e.g. tel:555-555-5555).
+                  </Typography>
                 </div>
               </DialogContent>
               <DialogActions>{actions}</DialogActions>
