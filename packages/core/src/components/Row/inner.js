@@ -33,27 +33,82 @@ const Inner = ({
   node: { id, hover, cells = [], hasInlineChildren },
   containerHeight,
   blurAllCells,
-  containerWidth
-}: ComponetizedRow) => (
-  <div
-    className={classNames('ory-row', {
-      'ory-row-is-hovering-this': Boolean(hover),
-      [`ory-row-is-hovering-${hover || ''}`]: Boolean(hover),
-      'ory-row-has-floating-children': hasInlineChildren
-    })}
-    onClick={blurAllCells}
-  >
-    {cells.map((c: string) => (
-      <Cell
-        rowWidth={containerWidth}
-        rowHeight={containerHeight}
-        ancestors={[...ancestors, id]}
-        editable={editable}
-        key={c}
-        id={c}
-      />
-    ))}
-  </div>
-)
+  containerWidth,
+  rawNode,
+  isTopLevelRow
+}: ComponetizedRow) => {
+
+  const nodes = rawNode();
+
+  // Only stack top the cells in top-level rows, except for those that have a slate instance
+  // with a width of 10 columns or greater. Everything else should have their layouts preserved.
+  function stackMobile(nodes) {
+    let stackMobile = false;
+
+    if (isTopLevelRow) {
+      stackMobile = true;
+      for (let i = 0; i < nodes.cells.length; i++) {
+        const cell = nodes.cells[i];
+        if (
+          typeof cell.content !== 'undefined' &&
+          cell.content.plugin.name === 'ory/editor/core/content/slate' &&
+          cell.size >= 10
+        ) {
+          stackMobile = false;
+          break;
+        }
+      }
+    }
+
+    return stackMobile;
+  }
+
+  function floatImage(nodes) {
+    let floatImage = false;
+
+    if (
+      isTopLevelRow &&
+      nodes.cells.length === 2
+    ) {
+      for (let i = 0; i < nodes.cells.length; i++) {
+        const cell = nodes.cells[i];
+        if (
+          typeof cell.content !== 'undefined' &&
+          cell.content.plugin.name === 'ory/editor/core/content/image' &&
+          cell.size >= 5
+        ) {
+          floatImage = true;
+          break;
+        }
+      }
+    }
+
+    return floatImage;
+  }
+
+  return (
+    <div
+      className={classNames('ory-row', {
+        'ory-row-is-hovering-this': Boolean(hover),
+        [`ory-row-is-hovering-${hover || ''}`]: Boolean(hover),
+        'ory-row-has-floating-children': hasInlineChildren,
+        'ory-row-float-image-up': floatImage(nodes)
+      })}
+      onClick={blurAllCells}
+    >
+      {cells.map((c: string) => (
+        <Cell
+          rowWidth={containerWidth}
+          rowHeight={containerHeight}
+          ancestors={[...ancestors, id]}
+          editable={editable}
+          key={c}
+          id={c}
+          stackMobile={stackMobile(nodes)}
+        />
+      ))}
+    </div>
+  )
+}
 
 export default Inner

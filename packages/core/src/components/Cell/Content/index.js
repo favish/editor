@@ -102,7 +102,8 @@ class Content extends Component {
       id,
       node: {
         content: { plugin: { Component, name, version }, state = {} } = {},
-        focused
+        focused,
+        size
       },
       updateCellContent
     } = this.props
@@ -144,6 +145,7 @@ class Content extends Component {
           isPreviewMode={isPreviewMode}
           isEditMode={isEditMode}
           isLayoutMode={isLayoutMode}
+          size={size}
         />
       </div>
     )

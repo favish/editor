@@ -45,11 +45,14 @@ import type { ComponetizedCell } from '../../types/editable'
 const gridClass = ({
   node: { size },
   isPreviewMode,
-  isEditMode
+  isEditMode,
+  ancestors,
+  node,
+  stackMobile
 }: ComponetizedCell): string => {
   if (isPreviewMode || isEditMode) {
     return `ory-cell-${isPreviewMode || isEditMode ? 'sm' : 'xs'}-${size ||
-      12} ory-cell-xs-12`
+      12} ory-cell-xs-${stackMobile ? 12 : size}`
   }
 
   return `ory-cell-xs-${size || 12}`

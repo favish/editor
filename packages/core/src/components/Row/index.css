@@ -59,3 +59,12 @@
   width: 4px;
 }
 
+.ory-row-float-image-up {
+  flex-direction: column-reverse;
+}
+
+@media (min-width: 768px) {
+  .ory-row-float-image-up {
+    flex-direction: row;
+  }
+}
