@@ -63,27 +63,33 @@ const Inner = ({
     return stackMobile;
   }
 
-  function floatImage(nodes) {
-    let floatImage = false;
+  function floatMedia(nodes) {
+    let floatMedia = false;
 
     if (
       isTopLevelRow &&
       nodes.cells.length === 2
     ) {
+      const mediaTypes = [
+        'ory/editor/core/content/image',
+        'ory/editor/core/content/image-drupal',
+        'ory/editor/core/content/video'
+      ];
+
       for (let i = 0; i < nodes.cells.length; i++) {
         const cell = nodes.cells[i];
         if (
           typeof cell.content !== 'undefined' &&
-          cell.content.plugin.name === 'ory/editor/core/content/image' &&
+          mediaTypes.includes(cell.content.plugin.name) &&
           cell.size >= 5
         ) {
-          floatImage = true;
+          floatMedia = true;
           break;
         }
       }
     }
 
-    return floatImage;
+    return floatMedia;
   }
 
   return (
@@ -92,7 +98,7 @@ const Inner = ({
         'ory-row-is-hovering-this': Boolean(hover),
         [`ory-row-is-hovering-${hover || ''}`]: Boolean(hover),
         'ory-row-has-floating-children': hasInlineChildren,
-        'ory-row-float-image-up': floatImage(nodes)
+        'ory-row-float-media': floatMedia(nodes)
       })}
       onClick={blurAllCells}
     >
