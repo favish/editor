@@ -27,23 +27,87 @@ import PluginService from 'ory-editor-core/lib/service/plugin'
 import { editable as reducer } from 'ory-editor-core/lib/reducer/editable'
 import type { Cell, Row } from 'ory-editor-core/lib/types/editable'
 
-const gridClass = (size: number = 12): string =>
-  `ory-cell-sm-${size} ory-cell-xs-12`
+const gridClass = (size: number = 12, stackMobile): string =>
+  `ory-cell-sm-${size} ory-cell-xs-${stackMobile ? 12 : size}`
 
-const HTMLRow = ({ cells = [], className, hasInlineChildren, editable }: Row) => (
-  <div
-    className={classNames('ory-row', className, {
-      'ory-row-has-floating-children': hasInlineChildren
-    })}
-  >
-    {cells.map((c: Cell) => (
-      <HTMLCell key={c.id} {...c} editable={editable} />
-    ))}
-  </div>
-)
+const HTMLRow = ({ cells = [], className, hasInlineChildren, editable, ancestors = [] }: Row) => {
+  const isTopLevelRow = ancestors.length === 2;
+
+  return (
+    <div
+      className={classNames('ory-row', className, {
+        'ory-row-has-floating-children': hasInlineChildren,
+        'ory-row-float-media': floatMedia(isTopLevelRow, cells)
+      })}
+    >
+      {cells.map((c: Cell) => (
+        <HTMLCell
+          key={c.id}
+          {...c}
+          editable={editable}
+          ancestors={[...ancestors, c.id]}
+          stackMobile={stackMobile(isTopLevelRow, cells)}
+        />
+      ))}
+    </div>
+  )
+}
 
 // eslint-disable-next-line no-empty-function
 const noop = () => {}
+
+// Only stack top the cells in top-level rows, except for those that have a slate instance
+// with a width of 10 columns or greater. Everything else should have their layouts preserved.
+const stackMobile = (isTopLevelRow, cells) => {
+  let stackMobile = false;
+
+  if (isTopLevelRow) {
+    stackMobile = true;
+    for (let i = 0; i < cells.length; i++) {
+      const cell = cells[i];
+      if (
+        typeof cell.content !== 'undefined' &&
+        cell.content.plugin.name === 'ory/editor/core/content/slate' &&
+        cell.size >= 10
+      ) {
+        stackMobile = false;
+        break;
+      }
+    }
+  }
+
+  return stackMobile;
+}
+
+const floatMedia = (isTopLevelRow, cells) => {
+  let floatMedia = false;
+
+  if (
+    isTopLevelRow &&
+    cells.length === 2
+  ) {
+    const mediaTypes = [
+      'ory/editor/core/content/image',
+      'ory/editor/core/content/image-drupal',
+      'ory/editor/core/content/video',
+      'ory/sites/plugin/content/html5-video'
+    ];
+
+    for (let i = 0; i < cells.length; i++) {
+      const cell = cells[i];
+      if (
+        typeof cell.content !== 'undefined' &&
+        mediaTypes.includes(cell.content.plugin.name) &&
+        cell.size >= 5
+      ) {
+        floatMedia = true;
+        break;
+      }
+    }
+  }
+
+  return floatMedia;
+}
 
 const HTMLCell = (props: Cell) => {
   const {
@@ -54,7 +118,8 @@ const HTMLCell = (props: Cell) => {
     inline,
     size,
     editable,
-    id
+    id,
+    ancestors
   } = props
   const cn = classNames('ory-cell', gridClass(size), {
     'ory-cell-has-inline-neighbour': hasInlineNeighbour,
@@ -72,7 +137,7 @@ const HTMLCell = (props: Cell) => {
         <div className="ory-cell-inner">
           <Component isPreviewMode readOnly state={state} onChange={noop} editable={editable} id={id}>
             {rows.map((r: Row) => (
-              <HTMLRow key={r.id} {...r} className="ory-cell-inner" editable={editable} />
+              <HTMLRow key={r.id} {...r} className="ory-cell-inner" editable={editable} ancestors={[...ancestors, r.id]} />
             ))}
           </Component>
         </div>
@@ -96,7 +161,7 @@ const HTMLCell = (props: Cell) => {
     return (
       <div className={cn}>
         {rows.map((r: Row) => (
-          <HTMLRow key={r.id} {...r} className="ory-cell-inner" editable={editable} />
+          <HTMLRow key={r.id} {...r} className="ory-cell-inner" editable={editable} ancestors={[...ancestors, r.id]}/>
         ))}
       </div>
     )
@@ -118,5 +183,5 @@ export const HTMLRenderer = ({
 }) => {
   const service = new PluginService(plugins)
   const props = reducer(service.unserialize(state), { type: 'renderer/noop' })
-  return <HTMLRow {...props} editable={state.id}/>
+  return <HTMLRow {...props} editable={state.id} ancestors={[]}/>
 }

@@ -73,7 +73,8 @@ const Inner = ({
       const mediaTypes = [
         'ory/editor/core/content/image',
         'ory/editor/core/content/image-drupal',
-        'ory/editor/core/content/video'
+        'ory/editor/core/content/video',
+        'ory/sites/plugin/content/html5-video'
       ];
 
       for (let i = 0; i < nodes.cells.length; i++) {
