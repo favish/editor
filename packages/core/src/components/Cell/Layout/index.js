@@ -138,6 +138,7 @@ class Layout extends React.Component {
           version={version}
           readOnly={!isEditMode}
           onChange={updateCellLayout}
+          isEditMode={isEditMode}
         >
           {rows.map((r: string) => (
             <Row
