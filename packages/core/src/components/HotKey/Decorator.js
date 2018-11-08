@@ -30,6 +30,7 @@ import Mousetrap from 'mousetrap'
 
 import { undo, redo } from '../../actions/undo'
 import { removeCell, focusCell, blurAllCells } from '../../actions/cell'
+import { previewMode } from '../../actions/display'
 import { isEditMode } from '../../selector/display'
 import { focus } from '../../selector/focus'
 import {
@@ -50,6 +51,7 @@ type Props = {
   focus: string,
   focusCell(id: string): void,
   blurAllCells(): void,
+  previewMode(): void,
   updateCellContent(): any,
   updateCellLayout(): any,
   isEditMode: boolean,
@@ -109,6 +111,7 @@ class Decorator extends Component {
       Mousetrap.bind(['del', 'backspace'], this.handlers.remove)
       Mousetrap.bind(['down', 'right'], this.handlers.focusNext)
       Mousetrap.bind(['up', 'left'], this.handlers.focusPrev)
+      Mousetrap.bind(['esc'], this.handlers.escape)
       wasInitialized = true
     }
   }
@@ -178,6 +181,10 @@ class Decorator extends Component {
           }
         })
         .catch(falser)
+    },
+
+    escape: (e: Event) => {
+      this.props.previewMode();
     }
   }
 
@@ -204,7 +211,8 @@ const mapDispatchToProps = {
   redo,
   removeCell,
   focusCell: (id: string) => focusCell(id)(),
-  blurAllCells
+  blurAllCells,
+  previewMode
 }
 
 export default connect(
