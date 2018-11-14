@@ -59,7 +59,7 @@ class Row extends Component {
 
     return (
       <Droppable {...props}>
-        <Inner {...props} isTopLevelRow={props.ancestors.length === 1} />
+        <Inner {...props} isTopLevelRow={window.editor.isTopLevelRow(this.props.editable, this.props.ancestors)} />
       </Droppable>
     )
   }

@@ -30,14 +30,14 @@ import type { Cell, Row } from 'ory-editor-core/lib/types/editable'
 const gridClass = (size: number = 12, stackMobile): string =>
   `ory-cell-sm-${size} ory-cell-xs-${stackMobile ? 12 : size}`
 
-const HTMLRow = ({ cells = [], className, hasInlineChildren, editable, ancestors = [] }: Row) => {
-  const isTopLevelRow = ancestors.length === 2;
+const HTMLRow = ({ id, cells = [], className, hasInlineChildren, editable, ancestors = [] }: Row) => {
+  const isTopLevelRow = window.editor.isTopLevelRow(editable, ancestors, 2);
+  const stack = stackMobile(isTopLevelRow, cells);
 
   return (
     <div
       className={classNames('ory-row', className, {
-        'ory-row-has-floating-children': hasInlineChildren,
-        'ory-row-float-media': floatMedia(isTopLevelRow, cells)
+        'ory-row-has-floating-children': hasInlineChildren
       })}
     >
       {cells.map((c: Cell) => (
@@ -45,8 +45,8 @@ const HTMLRow = ({ cells = [], className, hasInlineChildren, editable, ancestors
           key={c.id}
           {...c}
           editable={editable}
-          ancestors={[...ancestors, c.id]}
-          stackMobile={stackMobile(isTopLevelRow, cells)}
+          ancestors={[...ancestors, id]}
+          stackMobile={stack}
         />
       ))}
     </div>
@@ -79,36 +79,6 @@ const stackMobile = (isTopLevelRow, cells) => {
   return stackMobile;
 }
 
-const floatMedia = (isTopLevelRow, cells) => {
-  let floatMedia = false;
-
-  if (
-    isTopLevelRow &&
-    cells.length === 2
-  ) {
-    const mediaTypes = [
-      'ory/editor/core/content/image',
-      'ory/editor/core/content/image-drupal',
-      'ory/editor/core/content/video',
-      'ory/sites/plugin/content/html5-video'
-    ];
-
-    for (let i = 0; i < cells.length; i++) {
-      const cell = cells[i];
-      if (
-        typeof cell.content !== 'undefined' &&
-        mediaTypes.includes(cell.content.plugin.name) &&
-        cell.size >= 5
-      ) {
-        floatMedia = true;
-        break;
-      }
-    }
-  }
-
-  return floatMedia;
-}
-
 const HTMLCell = (props: Cell) => {
   const {
     rows = [],
@@ -119,9 +89,10 @@ const HTMLCell = (props: Cell) => {
     size,
     editable,
     id,
-    ancestors
+    ancestors,
+    stackMobile
   } = props
-  const cn = classNames('ory-cell', gridClass(size), {
+  const cn = classNames('ory-cell', gridClass(size, stackMobile), {
     'ory-cell-has-inline-neighbour': hasInlineNeighbour,
     [`ory-cell-inline-${inline || ''}`]: inline
   })
@@ -137,7 +108,7 @@ const HTMLCell = (props: Cell) => {
         <div className="ory-cell-inner">
           <Component isPreviewMode readOnly state={state} onChange={noop} editable={editable} id={id}>
             {rows.map((r: Row) => (
-              <HTMLRow key={r.id} {...r} className="ory-cell-inner" editable={editable} ancestors={[...ancestors, r.id]} />
+              <HTMLRow key={r.id} {...r} className="ory-cell-inner" editable={editable} ancestors={[...ancestors, id]} />
             ))}
           </Component>
         </div>
@@ -161,7 +132,7 @@ const HTMLCell = (props: Cell) => {
     return (
       <div className={cn}>
         {rows.map((r: Row) => (
-          <HTMLRow key={r.id} {...r} className="ory-cell-inner" editable={editable} ancestors={[...ancestors, r.id]}/>
+          <HTMLRow key={r.id} {...r} className="ory-cell-inner" editable={editable} ancestors={[...ancestors, id]}/>
         ))}
       </div>
     )

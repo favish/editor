@@ -63,43 +63,12 @@ const Inner = ({
     return stackMobile;
   }
 
-  function floatMedia(nodes) {
-    let floatMedia = false;
-
-    if (
-      isTopLevelRow &&
-      nodes.cells.length === 2
-    ) {
-      const mediaTypes = [
-        'ory/editor/core/content/image',
-        'ory/editor/core/content/image-drupal',
-        'ory/editor/core/content/video',
-        'ory/sites/plugin/content/html5-video'
-      ];
-
-      for (let i = 0; i < nodes.cells.length; i++) {
-        const cell = nodes.cells[i];
-        if (
-          typeof cell.content !== 'undefined' &&
-          mediaTypes.includes(cell.content.plugin.name) &&
-          cell.size >= 5
-        ) {
-          floatMedia = true;
-          break;
-        }
-      }
-    }
-
-    return floatMedia;
-  }
-
   return (
     <div
       className={classNames('ory-row', {
         'ory-row-is-hovering-this': Boolean(hover),
         [`ory-row-is-hovering-${hover || ''}`]: Boolean(hover),
-        'ory-row-has-floating-children': hasInlineChildren,
-        'ory-row-float-media': floatMedia(nodes)
+        'ory-row-has-floating-children': hasInlineChildren
       })}
       onClick={blurAllCells}
     >

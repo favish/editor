@@ -151,6 +151,59 @@ class Editor {
 
   trigger = {}
   query = {}
+
+  isTopLevelRow = (editable, ancestors, numBaseAncestors = 1) => {
+    let isTopLevelRow = false;
+
+    // Check if the row only has the base ancestors as parents.
+    if (ancestors.length === numBaseAncestors) {
+      isTopLevelRow = true;
+    }
+
+    // Check if the nearest ancestor is a layout plugin instance. If so, the context is reset and the row is
+    // considered a top level row.
+    const storeState = window.editor.store.getState();
+    const editableState = storeState.editables.present.find(e => e.id === editable);
+    const parentId = ancestors[ancestors.length - 1];
+
+    const match = this.getCellById(parentId, editableState);
+
+    if (
+      match !== null &&
+      typeof match.layout !== 'undefined'
+    ) {
+      isTopLevelRow = true;
+    }
+
+    return isTopLevelRow;
+  }
+
+  getCellById = (id, state) => {
+    let match = null;
+
+    recursiveLookup(id, state);
+
+    return match;
+
+    function recursiveLookup(id, state) {
+      if (state.id === id) {
+        match = state;
+      }
+
+      const childrenProp = Object.keys(state)
+        .find(prop => ['cells', 'rows'].includes(prop));
+
+      if (
+        typeof childrenProp !== 'undefined' &&
+        state[childrenProp].length
+      ) {
+        for (let i = 0; i < state[childrenProp].length; i++) {
+          const newState = state[childrenProp][i];
+          recursiveLookup(id, newState);
+        }
+      }
+    }
+  }
 }
 
 export { PluginService, Editable, Editor }
