@@ -138,6 +138,7 @@ class Raw extends Component {
         )}
         {layout.length > 0 && (
           <List
+            classes={{ root: 'ory-toolbar-list' }}
             subheader={
               <ListSubheader classes={{ root: 'ory-toolbar-subheader' }}>
                 Layout plugins
