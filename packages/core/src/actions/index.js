@@ -54,7 +54,11 @@ import {
 
 import { undo, redo } from './undo'
 
-import { updateEditable } from './editables'
+import {
+  updateEditable,
+  revertEditables,
+  emptyEditableRevisions
+} from './editables'
 
 import {
   insertMode,
@@ -95,6 +99,11 @@ export const actions = dispatch => ({
     insertLeftOf: (...args) => dispatch(insertCellLeftOf(...args)),
     insertFloatingLeft: (...args) => dispatch(insertCellLeftInline(...args)),
     insertFloatingRight: (...args) => dispatch(insertCellRightInline(...args))
+  },
+
+  editables: {
+    revert: (...args) => dispatch(revertEditables(...args)),
+    emptyRevisions: (...args) => dispatch(emptyEditableRevisions(...args)),
   },
 
   editable: {

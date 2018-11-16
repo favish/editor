@@ -25,7 +25,11 @@ import { set } from 'redux-undo/lib/debug'
 import undoable, { includeAction } from 'redux-undo'
 
 import { editable } from '../editable'
-import { UPDATE_EDITABLE } from '../../actions/editables'
+import {
+  UPDATE_EDITABLE,
+  REVERT_EDITABLES,
+  EMPTY_EDITABLE_REVISIONS
+} from '../../actions/editables'
 import type { Editable } from '../../types/editable'
 import {
   CELL_UPDATE_CONTENT,
@@ -108,6 +112,32 @@ export const editables = (
           // resolves https://github.com/ory/editor/pull/117#issuecomment-242942796
           editable(action.editable, action)
         ]),
+        future
+      })
+    case REVERT_EDITABLES:
+      // Do nothing if there are no past revisions, regardless of the editable.
+      if (!past.length) {
+        return inner({
+          past,
+          present,
+          future
+        })
+      }
+
+      return inner({
+        // Wipe out the past revisions for all editables because we currently do not need to support the
+        // complexity of reverting one editable while holding on to the current version of another.
+        past: [],
+        present: inner([
+          // Add the oldest items for all editables.
+          ...past[0]
+        ]),
+        future
+      })
+    case EMPTY_EDITABLE_REVISIONS:
+      return inner({
+        past: [],
+        present,
         future
       })
     default:

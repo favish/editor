@@ -26,10 +26,22 @@ import type { Editable } from '../types/editable'
 import { gen } from './helpers'
 
 export const UPDATE_EDITABLE = 'UPDATE_EDITABLE'
+export const REVERT_EDITABLES = 'REVERT_EDITABLES'
+export const EMPTY_EDITABLE_REVISIONS = 'EMPTY_EDITABLE_REVISIONS'
 
 export const updateEditable = (editable: Editable): Action => ({
   type: UPDATE_EDITABLE,
   ts: new Date(),
   editable,
   ids: gen(1)
+})
+
+export const revertEditables = (): Action => ({
+  type: REVERT_EDITABLES,
+  ts: new Date()
+})
+
+export const emptyEditableRevisions = (): Action => ({
+  type: EMPTY_EDITABLE_REVISIONS,
+  ts: new Date()
 })
