@@ -2,59 +2,107 @@
 
 ### Table of Contents
 
--   [Plugin][1]
-    -   [name][2]
-    -   [schema][3]
-    -   [plugins][4]
-    -   [serialize][5]
-    -   [deserialize][6]
-    -   [onKeyDown][7]
-    -   [hoverButtons][8]
-    -   [toolbarButtons][9]
-    -   [renderMark][10]
-    -   [renderNode][11]
+-   [Component][1]
+-   [Component][2]
+-   [default][3]
+-   [default][4]
+-   [default][5]
+-   [default][6]
+-   [default][7]
+-   [default][8]
+-   [default][9]
+-   [default][10]
+-   [PluginButtonProps][11]
+-   [Plugin][12]
+    -   [plugins][13]
+    -   [onKeyDown][14]
+        -   [Parameters][15]
+-   [Plugin][16]
+    -   [plugins][17]
+    -   [onKeyDown][18]
+        -   [Parameters][19]
+
+## Component
+
+[packages/plugins/content/slate/lib/Component/index.js:65-137][20]
+
+## Component
+
+[packages/plugins/content/slate/lib/plugins/link/index.js:73-191][21]
+
+## default
+
+[packages/plugins/content/slate/lib/plugins/alignment.js:70-84][22]
+
+## default
+
+[packages/plugins/content/slate/lib/plugins/blockquote.js:53-133][23]
+
+## default
+
+[packages/plugins/content/slate/lib/plugins/code/index.js:66-167][24]
+
+## default
+
+[packages/plugins/content/slate/lib/plugins/emphasize.js:80-175][25]
+
+## default
+
+[packages/plugins/content/slate/lib/plugins/headings.js:71-177][26]
+
+## default
+
+[packages/plugins/content/slate/lib/plugins/link/index.js:192-250][27]
+
+## default
+
+[packages/plugins/content/slate/lib/plugins/lists.js:72-192][28]
+
+## default
+
+[packages/plugins/content/slate/lib/plugins/paragraph/index.js:62-111][29]
+
+## PluginButtonProps
+
+[packages/plugins/content/slate/lib/plugins/Plugin.js:3-7][30]
 
 ## Plugin
 
-[packages/plugins/content/slate/src/plugins/Plugin.js:30-95][12]
-
-### name
-
-[packages/plugins/content/slate/src/plugins/Plugin.js:34-34][13]
-
-Type: [string][14]
-
-### schema
-
-[packages/plugins/content/slate/src/plugins/Plugin.js:39-42][15]
-
-Type: {nodes: {}?, marks: {}?}
+[packages/plugins/content/slate/lib/plugins/Plugin.js:12-33][31]
 
 ### plugins
 
-[packages/plugins/content/slate/src/plugins/Plugin.js:47-47][16]
-
-Type: [Array][17]&lt;any>
-
-### serialize
-
-[packages/plugins/content/slate/src/plugins/Plugin.js:52-55][18]
-
-Type: function (object: {object: [string][14], type: [string][14], data: any}, children: [Array][17]&lt;any>): any
-
-### deserialize
-
-[packages/plugins/content/slate/src/plugins/Plugin.js:60-60][19]
-
-Type: function (el: [Element][20], next: [Function][21]): any
+[packages/plugins/content/slate/lib/plugins/Plugin.js:17-17][32]
 
 ### onKeyDown
 
-[packages/plugins/content/slate/src/plugins/Plugin.js:70-74][22]
+[packages/plugins/content/slate/lib/plugins/Plugin.js:26-30][33]
 
 This handler is called when any key is pressed
 
-**Parameters**
+#### Parameters
+
+-   `e` **[Event][24]** the keydown event
+-   `data` **{key: [string][15], isMod: [boolean][25], isShift: [boolean][25]}** utilities for hotkey logic
+-   `state` **any** the current editor state
+
+Returns **any?** the new editor state if the plugin handles the hotkey
+
+## Plugin
+
+[packages/plugins/content/slate/lib/plugins/Plugin.js:12-33][31]
+
+### plugins
+
+[packages/plugins/content/slate/lib/plugins/Plugin.js:17-17][32]
+
+### onKeyDown
+
+[packages/plugins/content/slate/lib/plugins/Plugin.js:26-30][33]
+
+This handler is called when any key is pressed
+
+#### Parameters
 
 -   `e`  the keydown event
 -   `data`  utilities for hotkey logic
@@ -62,78 +110,68 @@ This handler is called when any key is pressed
 
 Returns **any** the new editor state if the plugin handles the hotkey
 
-### hoverButtons
+[1]: #component
 
-[packages/plugins/content/slate/src/plugins/Plugin.js:79-79][23]
+[2]: #component-1
 
-Type: [Array][17]&lt;Component&lt;any, any, any>>
+[3]: #default
 
-### toolbarButtons
+[4]: #default-1
 
-[packages/plugins/content/slate/src/plugins/Plugin.js:84-84][24]
+[5]: #default-2
 
-Type: [Array][17]&lt;Component&lt;any, any, any>>
+[6]: #default-3
 
-### renderMark
+[7]: #default-4
 
-[packages/plugins/content/slate/src/plugins/Plugin.js:89-89][25]
+[8]: #default-5
 
-Type: [Function][21]
+[9]: #default-6
 
-### renderNode
+[10]: #default-7
 
-[packages/plugins/content/slate/src/plugins/Plugin.js:94-94][26]
+[11]: #pluginbuttonprops
 
-Type: [Function][21]
+[12]: #plugin
 
-[1]: #plugin
+[13]: #plugins
 
-[2]: #name
+[14]: #onkeydown
 
-[3]: #schema
+[15]: #parameters
 
-[4]: #plugins
+[16]: #plugin-1
 
-[5]: #serialize
+[17]: #plugins-1
 
-[6]: #deserialize
+[18]: #onkeydown-1
 
-[7]: #onkeydown
+[19]: #parameters-1
 
-[8]: #hoverbuttons
+[20]: https://github.com/PeterKottas/editor/blob/306e1ece52f6e4853e83bb83b6e37a9411533bdf/packages/plugins/content/slate/lib/Component/index.js#L65-L137 "Source code on GitHub"
 
-[9]: #toolbarbuttons
+[21]: https://github.com/PeterKottas/editor/blob/306e1ece52f6e4853e83bb83b6e37a9411533bdf/packages/plugins/content/slate/lib/plugins/link/index.js#L73-L191 "Source code on GitHub"
 
-[10]: #rendermark
+[22]: https://github.com/PeterKottas/editor/blob/306e1ece52f6e4853e83bb83b6e37a9411533bdf/packages/plugins/content/slate/lib/plugins/alignment.js#L70-L84 "Source code on GitHub"
 
-[11]: #rendernode
+[23]: https://github.com/PeterKottas/editor/blob/306e1ece52f6e4853e83bb83b6e37a9411533bdf/packages/plugins/content/slate/lib/plugins/blockquote.js#L53-L133 "Source code on GitHub"
 
-[12]: https://github.com/ory-am/editor/blob/ca2a6276b89b7282695673c40c7fe5205a0593e4/packages/plugins/content/slate/src/plugins/Plugin.js#L30-L95 "Source code on GitHub"
+[24]: https://github.com/PeterKottas/editor/blob/306e1ece52f6e4853e83bb83b6e37a9411533bdf/packages/plugins/content/slate/lib/plugins/code/index.js#L66-L167 "Source code on GitHub"
 
-[13]: https://github.com/ory-am/editor/blob/ca2a6276b89b7282695673c40c7fe5205a0593e4/packages/plugins/content/slate/src/plugins/Plugin.js#L34-L34 "Source code on GitHub"
+[25]: https://github.com/PeterKottas/editor/blob/306e1ece52f6e4853e83bb83b6e37a9411533bdf/packages/plugins/content/slate/lib/plugins/emphasize.js#L80-L175 "Source code on GitHub"
 
-[14]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[26]: https://github.com/PeterKottas/editor/blob/306e1ece52f6e4853e83bb83b6e37a9411533bdf/packages/plugins/content/slate/lib/plugins/headings.js#L71-L177 "Source code on GitHub"
 
-[15]: https://github.com/ory-am/editor/blob/ca2a6276b89b7282695673c40c7fe5205a0593e4/packages/plugins/content/slate/src/plugins/Plugin.js#L39-L42 "Source code on GitHub"
+[27]: https://github.com/PeterKottas/editor/blob/306e1ece52f6e4853e83bb83b6e37a9411533bdf/packages/plugins/content/slate/lib/plugins/link/index.js#L192-L250 "Source code on GitHub"
 
-[16]: https://github.com/ory-am/editor/blob/ca2a6276b89b7282695673c40c7fe5205a0593e4/packages/plugins/content/slate/src/plugins/Plugin.js#L47-L47 "Source code on GitHub"
+[28]: https://github.com/PeterKottas/editor/blob/306e1ece52f6e4853e83bb83b6e37a9411533bdf/packages/plugins/content/slate/lib/plugins/lists.js#L72-L192 "Source code on GitHub"
 
-[17]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[29]: https://github.com/PeterKottas/editor/blob/306e1ece52f6e4853e83bb83b6e37a9411533bdf/packages/plugins/content/slate/lib/plugins/paragraph/index.js#L62-L111 "Source code on GitHub"
 
-[18]: https://github.com/ory-am/editor/blob/ca2a6276b89b7282695673c40c7fe5205a0593e4/packages/plugins/content/slate/src/plugins/Plugin.js#L52-L55 "Source code on GitHub"
+[30]: https://github.com/PeterKottas/editor/blob/306e1ece52f6e4853e83bb83b6e37a9411533bdf/packages/plugins/content/slate/lib/plugins/Plugin.js#L3-L7 "Source code on GitHub"
 
-[19]: https://github.com/ory-am/editor/blob/ca2a6276b89b7282695673c40c7fe5205a0593e4/packages/plugins/content/slate/src/plugins/Plugin.js#L60-L60 "Source code on GitHub"
+[31]: https://github.com/PeterKottas/editor/blob/306e1ece52f6e4853e83bb83b6e37a9411533bdf/packages/plugins/content/slate/lib/plugins/Plugin.js#L12-L33 "Source code on GitHub"
 
-[20]: https://developer.mozilla.org/docs/Web/API/Element
+[32]: https://github.com/PeterKottas/editor/blob/306e1ece52f6e4853e83bb83b6e37a9411533bdf/packages/plugins/content/slate/lib/plugins/Plugin.js#L17-L17 "Source code on GitHub"
 
-[21]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
-
-[22]: https://github.com/ory-am/editor/blob/ca2a6276b89b7282695673c40c7fe5205a0593e4/packages/plugins/content/slate/src/plugins/Plugin.js#L70-L74 "Source code on GitHub"
-
-[23]: https://github.com/ory-am/editor/blob/ca2a6276b89b7282695673c40c7fe5205a0593e4/packages/plugins/content/slate/src/plugins/Plugin.js#L79-L79 "Source code on GitHub"
-
-[24]: https://github.com/ory-am/editor/blob/ca2a6276b89b7282695673c40c7fe5205a0593e4/packages/plugins/content/slate/src/plugins/Plugin.js#L84-L84 "Source code on GitHub"
-
-[25]: https://github.com/ory-am/editor/blob/ca2a6276b89b7282695673c40c7fe5205a0593e4/packages/plugins/content/slate/src/plugins/Plugin.js#L89-L89 "Source code on GitHub"
-
-[26]: https://github.com/ory-am/editor/blob/ca2a6276b89b7282695673c40c7fe5205a0593e4/packages/plugins/content/slate/src/plugins/Plugin.js#L94-L94 "Source code on GitHub"
+[33]: https://github.com/PeterKottas/editor/blob/306e1ece52f6e4853e83bb83b6e37a9411533bdf/packages/plugins/content/slate/lib/plugins/Plugin.js#L26-L30 "Source code on GitHub"

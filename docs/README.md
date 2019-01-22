@@ -7,9 +7,9 @@ like webpack, and ES6. If you lack this knowledge ask in our [Chat](https://gitt
 
 Seeing is believing, so let's start with a demo!
 
-![ORY Editor Demo](https://storage.googleapis.com/ory.am/inline-edit-lg.gif)
+![ORY Editor Demo](./images/inline-edit-md.gif)
 
-A demo available at [editor.ory.am](https://editor.ory.am/) so go ahead and try it yourself!
+A demo available at [editor.ory.sh](https://editor.ory.sh/) so go ahead and try it yourself!
 
 ## Why it's different
 
@@ -72,14 +72,14 @@ it will be automatically removed.
 
 <p>
   <figure align="center">
-    <img alt="A content cell" src="/images/content-cell.png"><br>
+    <img alt="A content cell" src="./images/content-cell.png"><br>
     <figcaption align="center"><em>A content cell with the image plugin</em></figcaption>
   </figure>
 </p>
 
 <p>
   <figure align="center">
-    <img alt="A layout cell" src="/images/layout-cell.gif"><br>
+    <img alt="A layout cell" src="./images/layout-cell.gif"><br>
     <figcaption align="center"><em>A layout cell with a switchable background image plugin</em></figcaption>
   </figure>
 </p>
