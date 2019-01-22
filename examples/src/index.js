@@ -24,49 +24,49 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 // The editor core
-import Editor, { Editable, createEmptyState } from 'ory-editor-core'
-import 'ory-editor-core/lib/index.css' // we also want to load the stylesheets
+import Editor, { Editable, createEmptyState } from '@favish/ory-editor-core'
+import '@favish/ory-editor-core/lib/index.css' // we also want to load the stylesheets
 
 // The default ui components
-import { Trash, DisplayModeToggle, Toolbar } from 'ory-editor-ui'
-import 'ory-editor-ui/lib/index.css'
+import { Trash, DisplayModeToggle, Toolbar } from '@favish/ory-editor-ui'
+import '@favish/ory-editor-ui/lib/index.css'
 
 // The rich text area plugin
-import slate from 'ory-editor-plugins-slate'
-import 'ory-editor-plugins-slate/lib/index.css'
+import slate from '@favish/ory-editor-plugins-slate'
+import '@favish/ory-editor-plugins-slate/lib/index.css'
 
 // The spacer plugin
-import spacer from 'ory-editor-plugins-spacer'
-import 'ory-editor-plugins-spacer/lib/index.css'
+import spacer from '@favish/ory-editor-plugins-spacer'
+import '@favish/ory-editor-plugins-spacer/lib/index.css'
 
 // The image plugin
-import { imagePlugin } from 'ory-editor-plugins-image'
-import 'ory-editor-plugins-image/lib/index.css'
+import { imagePlugin } from '@favish/ory-editor-plugins-image'
+import '@favish/ory-editor-plugins-image/lib/index.css'
 
 // The video plugin
-import video from 'ory-editor-plugins-video'
-import 'ory-editor-plugins-video/lib/index.css'
+import video from '@favish/ory-editor-plugins-video'
+import '@favish/ory-editor-plugins-video/lib/index.css'
 
 // The parallax plugin
-import parallax from 'ory-editor-plugins-parallax-background'
-import 'ory-editor-plugins-parallax-background/lib/index.css'
+import parallax from '@favish/ory-editor-plugins-parallax-background'
+import '@favish/ory-editor-plugins-parallax-background/lib/index.css'
 
 // The background plugin
-import background, { COLOR_MODE_FLAG, IMAGE_MODE_FLAG, GRADIENT_MODE_FLAG } from 'ory-editor-plugins-background'
-import 'ory-editor-plugins-background/lib/index.css'
+import background, { COLOR_MODE_FLAG, IMAGE_MODE_FLAG, GRADIENT_MODE_FLAG } from '@favish/ory-editor-plugins-background'
+import '@favish/ory-editor-plugins-background/lib/index.css'
 
 // The html5-video plugin
-import html5video from 'ory-editor-plugins-html5-video'
-import 'ory-editor-plugins-html5-video/lib/index.css'
+import html5video from '@favish/ory-editor-plugins-html5-video'
+import '@favish/ory-editor-plugins-html5-video/lib/index.css'
 
 // The native handler plugin
-import native from 'ory-editor-plugins-default-native'
+import native from '@favish/ory-editor-plugins-default-native'
 
 // The divider plugin
-import divider from 'ory-editor-plugins-divider'
+import divider from '@favish/ory-editor-plugins-divider'
 
 // Renders json state to html, can be used on server and client side
-import { HTMLRenderer } from 'ory-editor-renderer'
+import { HTMLRenderer } from '@favish/ory-editor-renderer'
 
 // The content state
 import content from './content.js'
@@ -118,6 +118,8 @@ const editor = new Editor({
     createEmptyState()
   ],
 })
+
+window.editor = editor;
 
 editor.trigger.mode.edit()
 
